@@ -1,14 +1,12 @@
 #rocket
 {
-    background-image: url("images/rocket.png");
+    width:150px;
+    height:300px;
     position:relative;
-    left:100px;
-    top:200px;
-    width:293px;
-    height: 509px;
-    z-index: +1;
+    top: -100px;
+    left:10px;
     transform: rotate(-40deg);
-
+    z-index: +1;
 }
 
 #earth
@@ -37,7 +35,8 @@
 {
     text-align:center;
     top: 250px;
-    position: relative;
+    left: 220px;
+    position: absolute;
 }
 div
 {
