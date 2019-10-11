@@ -1,0 +1,46 @@
+#rocket
+{
+    background-image: url("images/rocket.png");
+    position:relative;
+    left:100px;
+    top:200px;
+    width:293px;
+    height: 509px;
+    z-index: +1;
+    transform: rotate(-40deg);
+
+}
+
+#earth
+{
+    background-image: url("images/earth.png");
+    width:644px;
+    height: 558px;
+    position:relative;
+    top:21px;
+    margin: 0 auto;
+
+}
+
+.center-layer
+{
+    width: 100%;
+    height: 600px;
+    position:relative;
+}
+.margin-layer
+{
+    width: 100%;
+    height: 150px;
+}
+#text-in-earth
+{
+    text-align:center;
+    top: 250px;
+    position: relative;
+}
+div
+{
+    border: 1px solid black;
+}
+
