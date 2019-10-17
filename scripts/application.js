@@ -29,6 +29,6 @@ class Application
         let nextSection = $('#' + this.currentSection).prev().attr('id');
         let nextSectionPosition = $('#' + nextSection).offset().top;
         $('html, body').animate({scrollTop : nextSectionPosition}, { duration : 800});
-        this.currentSection = nextSection; 
+        this.currentSection = nextSection;
     }
 }
