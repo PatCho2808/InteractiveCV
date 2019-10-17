@@ -3,7 +3,10 @@ class Application
     constructor()
     {
         this.rocket = new Rocket();
-        $(window).scrollTop( $('#personal-information-container').offset().top);
+        this.firstSection = "personal-information-container";
+        this.currentSection = this.firstSection;
+
+        $(window).scrollTop( $('#' + this.firstSection).offset().top);
 
         $('body').keydown(function(e)
         {
@@ -17,15 +20,15 @@ class Application
 
     onSpaceUp()
     {
-        this.rocket.animateFromEarth();
+        this.rocket.animateToNextSection();
         this.scrollToNextSection();
     }
 
     scrollToNextSection()
     {
-       // $(window).scrollTop( $('#skills-container').offset().top);
-        let nextSectionPosition = $('#skills-container').offset().top;
+        let nextSection = $('#' + this.currentSection).prev().attr('id');
+        let nextSectionPosition = $('#' + nextSection).offset().top;
         $('html, body').animate({scrollTop : nextSectionPosition}, { duration : 800});
-
+        this.currentSection = nextSection; 
     }
 }
