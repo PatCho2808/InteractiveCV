@@ -7,15 +7,6 @@ class Application
         this.currentSection = this.firstSection;
 
         $(window).scrollTop( $('#' + this.firstSection).offset().top);
-
-        $('body').keydown(function(e)
-        {
-            if(e.which == 32)
-            {
-                e.preventDefault();
-            }
-
-        });
     }
 
     onSpaceUp()

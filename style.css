@@ -43,7 +43,12 @@
     width:50%;
     font-size:70px;
 }
-
+#list-of-skills-container
+{
+    width: 80%;
+    position:relative;
+    margin:auto;
+}
 div
 {
     border: 1px solid black;
@@ -54,4 +59,20 @@ body{
     font-size: 50px;
     color:white;
 }
+table,tr,th
+{
+    border: 1px solid black;
+}
+table
+{
+    width:100%;
+}
+.littlePlanet
+{
+    background-image: url("images/littlePlanet1.png");
+    width:70px;
+    height: 70px;
+    float:left;
+}
+
 
