@@ -7,6 +7,8 @@ class Application
         this.currentSection = this.firstSection;
 
         $(window).scrollTop( $('#' + this.firstSection).offset().top);
+
+        this.assignRandomPlanetsToSkills();
     }
 
     onSpaceUp()
@@ -21,5 +23,14 @@ class Application
         let nextSectionPosition = $('#' + nextSection).offset().top;
         $('html, body').animate({scrollTop : nextSectionPosition}, { duration : 800});
         this.currentSection = nextSection;
+    }
+
+    assignRandomPlanetsToSkills()
+    {
+        $(".littlePlanet").each(function()
+        {
+            let number = Math.floor((Math.random() * 6) + 1);
+            $(this).addClass('littlePlanet' + number);
+        })
     }
 }

@@ -69,10 +69,41 @@ table
 }
 .littlePlanet
 {
-    background-image: url("images/littlePlanet1.png");
     width:70px;
     height: 70px;
     float:left;
+    margin: 0 15px;
+}
+.emptyLittlePlanet
+{
+    width:70px;
+    height: 70px;
+    float:left;
+    margin: 0 15px;
+}
+.littlePlanet1
+{
+    background-image: url("images/littlePlanet1.png");
+}
+.littlePlanet2
+{
+    background-image: url("images/littlePlanet2.png");
+}
+.littlePlanet3
+{
+    background-image: url("images/littlePlanet3.png");
+}
+.littlePlanet4
+{
+    background-image: url("images/littlePlanet4.png");
+}
+.littlePlanet5
+{
+    background-image: url("images/littlePlanet5.png");
+}
+.littlePlanet6
+{
+    background-image: url("images/littlePlanet6.png");
 }
 
 
