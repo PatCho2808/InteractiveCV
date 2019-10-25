@@ -29,8 +29,8 @@ class Rocket
     calculateEducationPosition()
     {
         return {
-            top :  $('#education-container').offset().top + $('#skills-container').height() / 2,
-            left: $('#education-container').width() / 2 - this.width / 2
+            top :  $('#saturn').offset().top,
+            left: $('#saturn').width()
         }
     }
 
@@ -38,23 +38,40 @@ class Rocket
     {
         switch(this.currentSection)
         {
-            case 0: this.animateFromEarth();
+            case 0:
+                this.afterStart();
+                this.animateToSkills();
                 break;
-            case 1 : this.animateFromSkills();
+            case 1 :
+                this.animateToEducation();
                 break;
         }
         this.currentSection++;
     }
 
-    animateFromSkills()
+    animateToEducation()
     {
         let newPosition = this.calculateEducationPosition();
 
         $('#rocket')
-            .animate({top: newPosition.top },{ duration : 700});
+            .animate({top: newPosition.top - 100 },{ duration : 700})
+            .animate({top: newPosition.top },{ duration : 700})
+            .animate(
+                { deg: 80 },
+                {
+                    duration: 100,
+                    step: function(now) {
+                        now = now - 40;
+                        $(this).css({ transform: 'rotate(' + now  + 'deg)' });
+                    },
+                    complete: function() {
+                        $('#rocket').css("background-image",'url("images/rocket.png")');
+                    }
+                }
+            )
     }
 
-    animateFromEarth()
+    animateToSkills()
     {
         let newPosition = this.calculateSkillPosition();
         let currentPosition = this.getCurrentPosition();
@@ -84,8 +101,6 @@ class Rocket
                 }
             )
             .animate({top: "-=" + distanceY/3 + "px" },{ duration : 200});
-
-
     }
 
     getCurrentPosition()
@@ -93,11 +108,24 @@ class Rocket
         return $('#rocket').offset();
     }
 
-    bouncingAnimation()
+    afterStart()
     {
-        $('#rocket')
-            .animate({top: "-=" + 10 + "px", left: "+=10px" },{ duration : 100})
-            .animate({top: "+=" + 10 + "px", left: "+=10px" },{ duration : 100})
+        this.replaceToRocketWithFlames();
+    }
+
+    afterLanding()
+    {
+        this.replaceToRocketWithoutFlames();
+    }
+
+    replaceToRocketWithFlames()
+    {
+        $('#rocket').css("background-image",'url("images/rocketWithFlames.png")');
+    }
+
+    replaceToRocketWithoutFlames()
+    {
+        $('#rocket').css("background-image",'url("images/rocket.png")');
     }
 
 }

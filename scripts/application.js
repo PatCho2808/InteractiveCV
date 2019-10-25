@@ -29,7 +29,7 @@ class Application
     {
         $(".littlePlanet").each(function()
         {
-            let number = Math.floor((Math.random() * 6) + 1);
+            let number = Math.floor((Math.random() * 5) + 1);
             $(this).addClass('littlePlanet' + number);
         })
     }

@@ -1,11 +1,12 @@
 #rocket
 {
-    width:155px;
-    height:250px;
+    width:170px;
+    height:320px;
     position:absolute;
     transform: rotate(-40deg);
     background-image: url("images/rocket.png");
-    overflow: hidden;
+    background-repeat: no-repeat;
+    overflow: visible;
 }
 
 #earth
@@ -51,12 +52,12 @@
 }
 div
 {
-    border: 1px solid black;
+    //border: 1px solid black;
 }
 body{
-    background-color: black;
     font-family: 'Amatic SC', cursive;
     font-size: 50px;
+    background-color: black;
     color:white;
 }
 table,tr,th
@@ -69,7 +70,7 @@ table
 }
 .littlePlanet
 {
-    width:70px;
+    width:71px;
     height: 70px;
     float:left;
     margin: 0 15px;
@@ -101,9 +102,17 @@ table
 {
     background-image: url("images/littlePlanet5.png");
 }
-.littlePlanet6
+#saturn
 {
-    background-image: url("images/littlePlanet6.png");
+    width: 1000px;
+    height: 667px;
+    background-image: url("images/saturn.png");
+    margin: 10px 100px;
 }
+.footer
+{
+    font-size:20px;
+}
+
 
 
