@@ -42,6 +42,14 @@ class Rocket
         }
     }
 
+    calculateContactPosition()
+    {
+        return {
+            top:  - this.height * 2,
+            left: $('#content').width() / 2 + this.width * 2
+        }
+    }
+
     animateToNextSection()
     {
         switch(this.currentSection)
@@ -56,6 +64,9 @@ class Rocket
             case 2 :
                 this.afterStart();
                 this.animateToExperience();
+                break;
+            case 3 :
+                this.animateToContact();
                 break;
         }
         this.currentSection++;
@@ -146,6 +157,41 @@ class Rocket
             )
             .animate({top: "-=" + distanceY/3 + "px", left: "-=200px" },{ duration : 100})
             .animate({left: "-=200px" },{ duration : 100})
+
+    }
+
+    animateToContact()
+    {
+        let newPosition = this.calculateContactPosition();
+        let currentPosition = this.getCurrentPosition();
+        let bottomOfContact = $('#contact-container').offset().top + $('#contact-container').height();
+        let distanceY = currentPosition.top - bottomOfContact;
+
+        $('#rocket')
+            .animate({top: "-=" + distanceY/2 + "px", left: "-=200px" },{ duration : 100})
+            .animate(
+                { deg: 40 },
+                {
+                    duration: 100,
+                    step: function(now) {
+                        now = now - 40;
+                        $(this).css({ transform: 'rotate(' + now  + 'deg)' });
+                    }
+                }
+            )
+            .animate({top: "-=" + distanceY/2 + "px"},{ duration : 100})
+            .animate(
+                { deg: 70 },
+                {
+                    duration: 100,
+                    step: function(now) {
+                        now = now - 40;
+                        $(this).css({ transform: 'rotate(' + now  + 'deg)' });
+                    }
+                }
+            )
+            .animate({top: newPosition.top, left: newPosition.left},{ duration : 1000});
+
 
     }
 
