@@ -34,6 +34,14 @@ class Rocket
         }
     }
 
+    calculateExperiencePosition()
+    {
+        return {
+            top: $('#space-station').offset().top + $('#space-station').height() - this.width * 1.5,
+            left: $('#experience-container').width() / 2 - this.height / 2
+        }
+    }
+
     animateToNextSection()
     {
         switch(this.currentSection)
@@ -44,6 +52,10 @@ class Rocket
                 break;
             case 1 :
                 this.animateToEducation();
+                break;
+            case 2 :
+                this.afterStart();
+                this.animateToExperience();
                 break;
         }
         this.currentSection++;
@@ -101,6 +113,40 @@ class Rocket
                 }
             )
             .animate({top: "-=" + distanceY/3 + "px" },{ duration : 200});
+    }
+
+    animateToExperience()
+    {
+        let newPosition = this.calculateExperiencePosition();
+        let currentPosition = this.getCurrentPosition();
+        let distanceY = currentPosition.top - newPosition.top;
+
+        $('#rocket')
+            .animate({top: "-=" + distanceY/3 + "px", left: "+=200px" },{ duration : 100})
+            .animate(
+                { deg: 40 },
+                {
+                    duration: 100,
+                    step: function(now) {
+                        now = now - 40;
+                        $(this).css({ transform: 'rotate(' + now  + 'deg)' });
+                    }
+                }
+            )
+            .animate({top: "-=" + distanceY/3 + "px"},{ duration : 100})
+            .animate(
+                { deg: -40 },
+                {
+                    duration: 100,
+                    step: function(now) {
+                        now = now - 40;
+                        $(this).css({ transform: 'rotate(' + now  + 'deg)' });
+                    }
+                }
+            )
+            .animate({top: "-=" + distanceY/3 + "px", left: "-=200px" },{ duration : 100})
+            .animate({left: "-=200px" },{ duration : 100})
+
     }
 
     getCurrentPosition()
