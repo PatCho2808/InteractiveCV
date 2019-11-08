@@ -114,5 +114,26 @@ table
     font-size:20px;
 }
 
+#space-station
+{
+    background-image: url("images/satelite.png");
+    width:1200px;
+    height:100%;
+    background-repeat: no-repeat;
+    overflow: visible;
+    margin: 0 auto;
+}
+
+#contact-form
+{
+    background-color: #807150;
+    width:500px;
+    height: 100%;
+    border-radius: 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
 
 

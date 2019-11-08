@@ -5,6 +5,7 @@ class Application
         this.rocket = new Rocket();
         this.firstSection = "personal-information-container";
         this.currentSection = this.firstSection;
+        this.isEnabledScrollingBySpace = true;
 
         $(window).scrollTop( $('#' + this.firstSection).offset().top);
 
@@ -13,8 +14,11 @@ class Application
 
     onSpaceUp()
     {
-        this.rocket.animateToNextSection();
-        this.scrollToNextSection();
+        if(this.isEnabledScrollingBySpace)
+        {
+            this.rocket.animateToNextSection();
+            this.scrollToNextSection();
+        }
     }
 
     scrollToNextSection()
@@ -33,4 +37,16 @@ class Application
             $(this).addClass('littlePlanet' + number);
         })
     }
+
+    enableScrollingBySpace(enable)
+    {
+        this.isEnabledScrollingBySpace = enable;
+    }
+
+    getIsEnabledScrollingBySpace()
+    {
+        return this.isEnabledScrollingBySpace;
+    }
+
+
 }

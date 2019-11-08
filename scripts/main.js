@@ -4,7 +4,7 @@ $(document).ready(function()
 
     $('body').keydown(function(e)
     {
-        if(e.which == 32)
+        if(e.which == 32 && application.getIsEnabledScrollingBySpace())
         {
             e.preventDefault();
         }
@@ -17,6 +17,18 @@ $(document).ready(function()
         {
             application.onSpaceUp();
         }
+    });
+
+    $('input, textarea').focusin(function(e)
+    {
+        console.log("focus");
+        application.enableScrollingBySpace(false);
+    });
+
+    $('input, textarea').focusout(function(e)
+    {
+        console.log("focus");
+        application.enableScrollingBySpace(true);
     });
 });
 
