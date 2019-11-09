@@ -17,6 +17,11 @@ $(document).ready(function()
         {
             application.onSpaceUp();
         }
+
+        if(e.which == 27) // pressed space
+        {
+            application.onEscapeUp();
+        }
     });
 
     $('input, textarea').focusin(function(e)

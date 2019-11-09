@@ -21,6 +21,21 @@ class Application
         }
     }
 
+    onEscapeUp()
+    {
+        this.returnToPreviousSection();
+        this.rocket.animateToPreviousSection();
+    }
+
+    returnToPreviousSection()
+    {
+        let prevSection = $('#' + this.currentSection).next().attr('id');
+        let prevSectionPosition = $('#' + prevSection).offset().top;
+        $('html, body').animate({scrollTop : prevSectionPosition}, { duration : 800});
+        this.currentSection = prevSection;
+    }
+
+
     scrollToNextSection()
     {
         let nextSection = $('#' + this.currentSection).prev().attr('id');

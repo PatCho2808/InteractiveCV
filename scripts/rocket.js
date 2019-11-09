@@ -6,6 +6,7 @@ class Rocket
         this.width = $('#rocket').width();
         this.height = $('#rocket').height();
         this.currentSection = 0;
+        this.numberOfSections = 4 //starting from 0;
     }
 
     calculateStartingPosition()
@@ -30,7 +31,7 @@ class Rocket
     {
         return {
             top :  $('#saturn').offset().top,
-            left: $('#saturn').width()
+            left: $('#saturn').width() - this.width
         }
     }
 
@@ -38,7 +39,7 @@ class Rocket
     {
         return {
             top: $('#space-station').offset().top + $('#space-station').height() - this.width * 1.5,
-            left: $('#experience-container').width() / 2 - this.height / 2
+            left: $('#experience-container').width() / 2 - this.width * 2
         }
     }
 
@@ -69,7 +70,68 @@ class Rocket
                 this.animateToContact();
                 break;
         }
-        this.currentSection++;
+        if(this.currentSection < this.numberOfSections)
+        {
+            this.currentSection++;
+        }
+    }
+
+    animateToPreviousSection()
+    {
+        switch(this.currentSection)
+        {
+            case 4:
+                this.setOnExperiencePosition();
+                break;
+            case 3:
+                this.setOnEducationPosition();
+                this.replaceToRocketWithoutFlames()
+                break;
+            case 2:
+                this.setOnSkillsPosition();
+                this.replaceToRocketWithFlames()
+                break;
+            case 1:
+                this.setOnStartingPosition();
+                this.replaceToRocketWithoutFlames();
+                break;
+        }
+
+        if(this.currentSection>=0)
+        {
+            this.currentSection--;
+        }
+    }
+
+    setOnExperiencePosition()
+    {
+        let newPosition = this.calculateExperiencePosition();
+        $('#rocket').offset(newPosition);
+        $('#rocket').css({ transform: 'rotate(-70deg)' });
+    }
+
+    setOnEducationPosition()
+    {
+        let newPosition = this.calculateEducationPosition();
+        newPosition.left -=100;
+        $('#rocket').offset(newPosition);
+        $('#rocket').css({ transform: 'rotate(40deg)' });
+    }
+
+    setOnSkillsPosition()
+    {
+        let newPosition = this.calculateSkillPosition();
+        newPosition.left -= 100;
+        $('#rocket').offset(newPosition);
+        $('#rocket').css({ transform: 'rotate(0deg)' });
+    }
+
+    setOnStartingPosition()
+    {
+        let newPosition = this.calculateStartingPosition();
+        newPosition.left +=100;
+        $('#rocket').offset(newPosition);
+        $('#rocket').css({ transform: 'rotate(-40deg)' });
     }
 
     animateToEducation()
@@ -77,7 +139,7 @@ class Rocket
         let newPosition = this.calculateEducationPosition();
 
         $('#rocket')
-            .animate({top: newPosition.top - 100 },{ duration : 700})
+            .animate({top: newPosition.top - 100, left: newPosition.left},{ duration : 700})
             .animate({top: newPosition.top },{ duration : 700})
             .animate(
                 { deg: 80 },
@@ -156,7 +218,7 @@ class Rocket
                 }
             )
             .animate({top: "-=" + distanceY/3 + "px", left: "-=200px" },{ duration : 100})
-            .animate({left: "-=200px" },{ duration : 100})
+            .animate({left: newPosition.left },{ duration : 100})
 
     }
 
