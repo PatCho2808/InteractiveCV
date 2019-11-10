@@ -35,6 +35,15 @@ $(document).ready(function()
         console.log("focus");
         application.enableScrollingBySpace(true);
     });
+
+    $( window ).resize(function() {
+        application.onResize();
+    });
+
+    $( window ).scroll(function() {
+        $('html, body').scrollTop( application.getPositionOfCurrentSection());
+    });
+
 });
 
 

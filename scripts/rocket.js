@@ -85,11 +85,11 @@ class Rocket
                 break;
             case 3:
                 this.setOnEducationPosition();
-                this.replaceToRocketWithoutFlames()
+                this.replaceToRocketWithoutFlames();
                 break;
             case 2:
                 this.setOnSkillsPosition();
-                this.replaceToRocketWithFlames()
+                this.replaceToRocketWithFlames();
                 break;
             case 1:
                 this.setOnStartingPosition();
@@ -267,11 +267,6 @@ class Rocket
         this.replaceToRocketWithFlames();
     }
 
-    afterLanding()
-    {
-        this.replaceToRocketWithoutFlames();
-    }
-
     replaceToRocketWithFlames()
     {
         $('#rocket').css("background-image",'url("images/rocketWithFlames.png")');
@@ -282,4 +277,22 @@ class Rocket
         $('#rocket').css("background-image",'url("images/rocket.png")');
     }
 
+    setPositionAfterResize()
+    {
+        switch(this.currentSection)
+        {
+            case 3:
+                this.setOnExperiencePosition();
+                break;
+            case 2:
+                this.setOnEducationPosition();
+                break;
+            case 1:
+                this.setOnSkillsPosition();
+                break;
+            case 0:
+                this.setOnStartingPosition();
+                break;
+        }
+    }
 }

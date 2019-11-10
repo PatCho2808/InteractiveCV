@@ -6,6 +6,8 @@ class Application
         this.firstSection = "personal-information-container";
         this.currentSection = this.firstSection;
         this.isEnabledScrollingBySpace = true;
+        this.numberOfSections = 4; //starting from 0
+        this.numberOfCurrentSection = 0;
 
         $(window).scrollTop( $('#' + this.firstSection).offset().top);
 
@@ -18,6 +20,10 @@ class Application
         {
             this.rocket.animateToNextSection();
             this.scrollToNextSection();
+            if(this.currentSection == "contact-container")
+            {
+                this.onEndOfApplication();
+            }
         }
     }
 
@@ -25,6 +31,11 @@ class Application
     {
         this.returnToPreviousSection();
         this.rocket.animateToPreviousSection();
+    }
+
+    onResize()
+    {
+        this.rocket.setPositionAfterResize();
     }
 
     returnToPreviousSection()
@@ -63,5 +74,20 @@ class Application
         return this.isEnabledScrollingBySpace;
     }
 
+    getPositionOfCurrentSection()
+    {
+        return $('#' + this.currentSection).offset().top;
+    }
+
+
+    enableScroll()
+    {
+        $( window ).unbind('scroll');
+    }
+
+    onEndOfApplication()
+    {
+        this.enableScroll();
+    }
 
 }
