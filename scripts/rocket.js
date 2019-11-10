@@ -7,6 +7,7 @@ class Rocket
         this.height = $('#rocket').height();
         this.currentSection = 0;
         this.numberOfSections = 4 //starting from 0;
+        this.bouncingDuration = 1200;
     }
 
     calculateStartingPosition()
@@ -53,17 +54,17 @@ class Rocket
 
     animateToNextSection()
     {
+        this.onExitSection(this.currentSection);
+
         switch(this.currentSection)
         {
             case 0:
-                this.afterStart();
                 this.animateToSkills();
                 break;
             case 1 :
                 this.animateToEducation();
                 break;
             case 2 :
-                this.afterStart();
                 this.animateToExperience();
                 break;
             case 3 :
@@ -74,10 +75,14 @@ class Rocket
         {
             this.currentSection++;
         }
+
+        this.onEnterSection(this.currentSection);
     }
 
     animateToPreviousSection()
     {
+        this.onExitSection(this.currentSection);
+
         switch(this.currentSection)
         {
             case 4:
@@ -85,21 +90,62 @@ class Rocket
                 break;
             case 3:
                 this.setOnEducationPosition();
-                this.replaceToRocketWithoutFlames();
                 break;
             case 2:
                 this.setOnSkillsPosition();
-                this.replaceToRocketWithFlames();
                 break;
             case 1:
                 this.setOnStartingPosition();
-                this.replaceToRocketWithoutFlames();
                 break;
         }
 
         if(this.currentSection>=0)
         {
             this.currentSection--;
+        }
+
+        this.onEnterSection(this.currentSection);
+    }
+
+    onEnterSection(newSection)
+    {
+        switch(newSection)
+        {
+            case 0:
+                this.waitUntilEndOfTheQueueToReplaceToRocketWithoutFlames();
+                break;
+            case 1 :
+                this.startBouncing();
+                break;
+            case 2 :
+                this.waitUntilEndOfTheQueueToReplaceToRocketWithoutFlames();
+                break;
+            case 3 :
+               // animacja liny
+                break;
+            case 4:
+                break;
+        }
+    }
+
+    onExitSection(oldSection)
+    {
+        switch(oldSection)
+        {
+            case 0:
+                this.afterStart();
+                break;
+            case 1 :
+                this.stopBouncing();
+                break;
+            case 2 :
+                this.afterStart();
+                break;
+            case 3 :
+                //chowanie liny
+                break;
+            case 4:
+                break;
         }
     }
 
@@ -149,9 +195,6 @@ class Rocket
                         now = now - 40;
                         $(this).css({ transform: 'rotate(' + now  + 'deg)' });
                     },
-                    complete: function() {
-                        $('#rocket').css("background-image",'url("images/rocket.png")');
-                    }
                 }
             )
     }
@@ -185,7 +228,12 @@ class Rocket
                     }
                 }
             )
-            .animate({top: "-=" + distanceY/3 + "px" },{ duration : 200});
+            .animate({top: "-=" + distanceY/3 + "px" },{
+                duration : 200,
+            complete: function()
+            {
+
+            }});
     }
 
     animateToExperience()
@@ -272,11 +320,6 @@ class Rocket
         $('#rocket').css("background-image",'url("images/rocketWithFlames.png")');
     }
 
-    replaceToRocketWithoutFlames()
-    {
-        $('#rocket').css("background-image",'url("images/rocket.png")');
-    }
-
     setPositionAfterResize()
     {
         switch(this.currentSection)
@@ -294,5 +337,37 @@ class Rocket
                 this.setOnStartingPosition();
                 break;
         }
+    }
+
+    startBouncing()
+    {
+        this.bouncingInterval = setInterval(this.bouncingAnimation,this.bouncingDuration);
+    }
+
+    stopBouncing()
+    {
+        $('#rocket').finish();
+        clearInterval(this.bouncingInterval);
+    }
+
+    bouncingAnimation()
+    {
+        let distance = 50;
+        $('#rocket')
+            .animate({top : "-=" + distance + "px"}, {duration: 600})
+            .animate({top: "+=" + distance + "px"}, {duration: 600});
+    }
+
+    waitUntilEndOfTheQueueToReplaceToRocketWithoutFlames()
+    {
+        let replacingInterval = setInterval(function()
+        {
+            if($('#rocket').queue("fx").length == 0 )
+            {
+                $('#rocket').css("background-image",'url("images/rocket.png")');
+                clearInterval(replacingInterval);
+            }
+
+        }, 100);
     }
 }
