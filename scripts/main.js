@@ -40,9 +40,6 @@ $(document).ready(function()
         application.onResize();
     });
 
-    $( window ).scroll(function() {
-        $('html, body').scrollTop( application.getPositionOfCurrentSection());
-    });
 
 });
 

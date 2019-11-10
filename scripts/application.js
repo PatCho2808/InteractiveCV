@@ -82,7 +82,7 @@ class Application
 
     enableScroll()
     {
-        $( window ).unbind('scroll');
+        $("body").css("overflow", "auto");
     }
 
     onEndOfApplication()
