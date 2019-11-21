@@ -4,6 +4,7 @@ class Application
     {
         this.rocket = new Rocket();
         this.ufo = new Ufo();
+        this.alien = new Alien();
         this.firstSection = "personal-information-container";
         this.currentSection = this.firstSection;
         this.isEnabledScrollingBySpace = true;
@@ -40,10 +41,10 @@ class Application
 
                 break;
             case 2 :
-                this.ufo.playAnimationAfterWait(this.currentSection);
+                this.alien.playAnimationAfterWait();
                 break;
             case 3 :
-
+                this.ufo.playUpAnimationAfterWait(this.currentSection);
                 break;
             case 4:
                 break;

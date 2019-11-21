@@ -196,7 +196,7 @@ class Rocket
                         $(this).css({ transform: 'rotate(' + now  + 'deg)' });
                     },
                 }
-            )
+            );
     }
 
     animateToSkills()
