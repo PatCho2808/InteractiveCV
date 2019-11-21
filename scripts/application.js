@@ -47,6 +47,7 @@ class Application
                 this.ufo.playUpAnimationAfterWait(this.currentSection);
                 break;
             case 4:
+                this.ufo.playDownAnimationAfterWait();
                 break;
         }
     }
