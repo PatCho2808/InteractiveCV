@@ -36,6 +36,11 @@
     font-size: 15px;
 }
 
+#content
+{
+    background-image: url("images/background.png");
+}
+
 #text-in-earth
 {
     text-align:center;
@@ -66,6 +71,7 @@ body{
     background-color: black;
     color:white;
     //overflow: hidden;
+    overflow-x: hidden;
 }
 table,tr,th
 {
@@ -169,6 +175,14 @@ button:hover
     font-size: 30px;
 }
 
+
+#ufo
+{
+    background-image: url("images/ufo.png");
+    position: absolute;
+    height: 150px;
+    width: 218px;
+}
 
 
 

@@ -3,6 +3,7 @@ class Application
     constructor()
     {
         this.rocket = new Rocket();
+        this.ufo = new Ufo();
         this.firstSection = "personal-information-container";
         this.currentSection = this.firstSection;
         this.isEnabledScrollingBySpace = true;
@@ -20,10 +21,32 @@ class Application
         {
             this.rocket.animateToNextSection();
             this.scrollToNextSection();
-            if(this.currentSection == "contact-container")
+            if(this.numberOfCurrentSection == this.numberOfSections)
             {
                 this.onEndOfApplication();
             }
+            this.onEnterSection(this.numberOfCurrentSection);
+        }
+    }
+
+    onEnterSection(newSection)
+    {
+        switch(newSection)
+        {
+            case 0:
+
+                break;
+            case 1 :
+
+                break;
+            case 2 :
+                this.ufo.playAnimationAfterWait();
+                break;
+            case 3 :
+
+                break;
+            case 4:
+                break;
         }
     }
 
@@ -44,6 +67,7 @@ class Application
         let prevSectionPosition = $('#' + prevSection).offset().top;
         $('html, body').animate({scrollTop : prevSectionPosition}, { duration : 800});
         this.currentSection = prevSection;
+        if(this.numberOfSections > 0) this.numberOfSections--;
     }
 
 
@@ -53,6 +77,7 @@ class Application
         let nextSectionPosition = $('#' + nextSection).offset().top;
         $('html, body').animate({scrollTop : nextSectionPosition}, { duration : 800});
         this.currentSection = nextSection;
+        if(this.numberOfCurrentSection < this.numberOfSections) this.numberOfCurrentSection++;
     }
 
     assignRandomPlanetsToSkills()
@@ -82,7 +107,7 @@ class Application
 
     enableScroll()
     {
-        $("body").css("overflow", "auto");
+        $("body").css("overflow-y", "auto");
     }
 
     onEndOfApplication()
