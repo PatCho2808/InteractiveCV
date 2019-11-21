@@ -182,6 +182,7 @@ button:hover
     position: absolute;
     height: 150px;
     width: 218px;
+    top: -200px;
 }
 
 

@@ -40,7 +40,7 @@ class Application
 
                 break;
             case 2 :
-                this.ufo.playAnimationAfterWait();
+                this.ufo.playAnimationAfterWait(this.currentSection);
                 break;
             case 3 :
 

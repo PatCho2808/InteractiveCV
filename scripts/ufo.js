@@ -1,52 +1,18 @@
 class Ufo
 {
-    constructor()
-    {
-        this.setStartingPosition();
-        this.height = $("#ufo").height();
-        this.width = $("#ufo").width();
-    }
-
-    setStartingPosition()
+    setStartingPosition(namOfTheContainer)
     {
         $('#ufo').offset(
             {
-                top: $('#education-container').offset().top + $('#education-container').height() ,
+                top: $('#' + namOfTheContainer).offset().top + $('#' + namOfTheContainer).height() ,
                 left: $( document ).width()
             }
         );
     }
 
-    calculateEndingPosition()
+    playAnimationAfterWait(namOfTheContainer)
     {
-        return {
-            top: $('#experience-container').offset().top + $('#experience-container').height(),
-            left: -100
-        };
-    }
-
-    getCurrentPosition()
-    {
-        return $('#rocket').offset();
-    }
-
-
-    playAnimationAfterWait()
-    {
-        let duration = 500;
-        let durationDown = 200;
-        let numberOfStages = 5;
-        let newPosition = this.calculateEndingPosition();
-        let currentPosition = this.getCurrentPosition();
-        let distanceWidth = currentPosition.left - newPosition.left;
-        let distanceHeight = currentPosition.top - newPosition.top;
-        let waitingDuration = 800;
-        let stepHeightUp = 30;
-        let stepHeightDown = -5;
-        //let stepWidth = distanceWidth / numberOfStages;
-        let stepWidth = 26;
-        console.log(stepWidth);
-
+        this.setStartingPosition(namOfTheContainer)
         let interval = setInterval(function()
         {
             $('#ufo')
@@ -71,8 +37,6 @@ class Ufo
 
 
             clearInterval(interval);
-        }, waitingDuration)
-
-
+        }, 800)
     }
 }
