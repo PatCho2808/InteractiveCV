@@ -141,6 +141,7 @@ table
     border-radius: 25px;
     margin: 0 auto;
     text-align: center;
+    display: none;
 }
 
 input,textarea
@@ -200,9 +201,13 @@ button:hover
     text-align:center;
     position: relative;
     top: 20%;
-
+    display: none;
 }
 
+.name-of-skill
+{
+    display: none;
+}
 
 
 

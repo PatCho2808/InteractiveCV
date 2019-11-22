@@ -38,16 +38,18 @@ class Application
 
                 break;
             case 1 :
-
+                this.fadeInSkillNames();
                 break;
             case 2 :
                 this.alien.playAnimationAfterWait();
+                this.slideTextInSaturn();
                 break;
             case 3 :
                 this.ufo.playUpAnimationAfterWait(this.currentSection);
                 break;
             case 4:
                 this.ufo.playDownAnimationAfterWait();
+                this.fadeInContactForm();
                 break;
         }
     }
@@ -115,6 +117,24 @@ class Application
     onEndOfApplication()
     {
         this.enableScroll();
+    }
+
+    fadeInSkillNames()
+    {
+        $(".name-of-skill").each(function()
+        {
+            $(this).fadeIn(6000);
+        })
+    }
+
+    slideTextInSaturn()
+    {
+        $("#text-in-saturn").slideDown(4000);
+    }
+
+    fadeInContactForm()
+    {
+        $("#contact-form").fadeIn(6000);
     }
 
 }

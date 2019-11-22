@@ -65,6 +65,6 @@ class Ufo
                     }
                 });
             clearInterval(interval);
-        }, 1600)
+        }, 10000)
     }
 }
