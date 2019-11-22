@@ -51,7 +51,7 @@ class Ufo
         $("#ufo").css({ transform: 'rotate(180deg)' });
     }
 
-    playDownAnimationAfterWait(namOfTheContainer)
+    playDownAnimationAfterWait()
     {
         this.setStartingPositionOfDownAnimation()
         let interval = setInterval(function()
@@ -65,6 +65,6 @@ class Ufo
                     }
                 });
             clearInterval(interval);
-        }, 800)
+        }, 1600)
     }
 }

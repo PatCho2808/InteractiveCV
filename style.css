@@ -175,7 +175,6 @@ button:hover
     font-size: 30px;
 }
 
-
 #ufo
 {
     background-image: url("images/ufo.png");
@@ -184,6 +183,7 @@ button:hover
     width: 218px;
     top: -200px;
 }
+
 #alien
 {
     background-image: url("images/alien.png");
@@ -192,6 +192,15 @@ button:hover
     width: 169px;
     top: -200px;
     transform: rotate(-40deg);
+}
+
+
+#text-in-saturn
+{
+    text-align:center;
+    position: relative;
+    top: 20%;
+
 }
 
 
